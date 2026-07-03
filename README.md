@@ -4,6 +4,6 @@ title: Craig's Python Notes
 permalink: /
 ---
 
-# Python Scrapbook
+# Craig's Python Scrapbook
 
 - [Part 1: Basics](./week1/)
