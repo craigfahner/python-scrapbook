@@ -382,3 +382,170 @@ total_seconds = int(minutes_str) * 60 + int(seconds_str)
 
 print(total_seconds)
 </script>
+
+### Adding a new key to a dictionary
+
+Assigning to `dictionary["some_key"] = value` adds a new key/value pair if
+that key doesn't already exist — the same "created (or updated)"
+assignment behavior from [Part 1's Variables section](../part1/), just
+applied to a dictionary key instead of a plain variable name. Here, each
+album gets a new `running_time_in_seconds` key, using the same
+string-to-seconds conversion as before:
+
+```python
+minutes_str, seconds_str = beatles_albums[0]["running_time"].split(":")
+beatles_albums[0]["running_time_in_seconds"] = int(minutes_str) * 60 + int(seconds_str)
+
+minutes_str, seconds_str = beatles_albums[1]["running_time"].split(":")
+beatles_albums[1]["running_time_in_seconds"] = int(minutes_str) * 60 + int(seconds_str)
+
+minutes_str, seconds_str = beatles_albums[2]["running_time"].split(":")
+beatles_albums[2]["running_time_in_seconds"] = int(minutes_str) * 60 + int(seconds_str)
+
+print(beatles_albums[0])
+print(beatles_albums[1])
+print(beatles_albums[2])
+```
+
+<script type="py-editor">
+beatles_albums = [
+    {
+        "album_title": "Please Please Me",
+        "release_date": "22 March 1963",
+        "running_time": "31:59",
+        "tracks": ["I Saw Her Standing There", "Misery", "Anna (Go to Him)",
+                   "Chains", "Boys", "Ask Me Why", "Please Please Me",
+                   "Love Me Do", "P.S. I Love You", "Baby It's You",
+                   "Do You Want to Know a Secret", "A Taste of Honey",
+                   "There's a Place", "Twist and Shout"],
+    },
+    {
+        "album_title": "With the Beatles",
+        "release_date": "22 November 1963",
+        "running_time": "33:07",
+        "tracks": ["It Won't Be Long", "All I've Got to Do", "All My Loving",
+                   "Don't Bother Me", "Little Child", "Till There Was You",
+                   "Please Mister Postman", "Roll Over Beethoven", "Hold Me Tight",
+                   "You Really Got a Hold on Me", "I Wanna Be Your Man",
+                   "Devil in Her Heart", "Not a Second Time",
+                   "Money (That's What I Want)"],
+    },
+    {
+        "album_title": "A Hard Day's Night",
+        "release_date": "10 July 1964",
+        "running_time": "30:09",
+        "tracks": ["A Hard Day's Night", "I Should Have Known Better", "If I Fell",
+                   "I'm Happy Just to Dance with You", "And I Love Her", "Tell Me Why",
+                   "Can't Buy Me Love", "Any Time at All", "I'll Cry Instead",
+                   "Things We Said Today", "When I Get Home", "You Can't Do That",
+                   "I'll Be Back"],
+    },
+]
+
+minutes_str, seconds_str = beatles_albums[0]["running_time"].split(":")
+beatles_albums[0]["running_time_in_seconds"] = int(minutes_str) * 60 + int(seconds_str)
+
+minutes_str, seconds_str = beatles_albums[1]["running_time"].split(":")
+beatles_albums[1]["running_time_in_seconds"] = int(minutes_str) * 60 + int(seconds_str)
+
+minutes_str, seconds_str = beatles_albums[2]["running_time"].split(":")
+beatles_albums[2]["running_time_in_seconds"] = int(minutes_str) * 60 + int(seconds_str)
+
+print(beatles_albums[0])
+print(beatles_albums[1])
+print(beatles_albums[2])
+</script>
+
+### Safely accessing a dictionary value with get()
+
+`beatles_albums[0]["producer"]` would raise a `KeyError` if `"producer"`
+isn't a key in that dictionary — there's no key by that name in any album
+here. `.get(key, default)` checks for the key and returns its value if
+found, or the `default` you provide if it isn't, instead of crashing:
+
+```python
+first_album = beatles_albums[0]
+
+print(first_album.get("producer", "Unknown"))       # "Unknown" -- no "producer" key
+print(first_album.get("album_title", "Unknown"))     # "Please Please Me" -- key exists
+
+print(first_album["producer"])   # KeyError: 'producer'
+```
+
+<script type="py-editor">
+first_album = {
+    "album_title": "Please Please Me",
+    "release_date": "22 March 1963",
+    "running_time": "31:59",
+}
+
+print(first_album.get("producer", "Unknown"))
+print(first_album.get("album_title", "Unknown"))
+
+print(first_album["producer"])
+</script>
+
+### Tuples
+
+Before using one as a dictionary key, it's worth introducing the tuple
+itself: a tuple is an ordered collection of values, just like a list, but
+written with parentheses `( )` instead of square brackets. The important
+difference is that a tuple is **immutable** — once created, it can't be
+changed. Indexing works the same as it does on a list:
+
+```python
+coordinates = (40.7128, -74.0060)
+
+print(coordinates)
+print(coordinates[0])   # indexing works just like a list -- 40.7128
+
+coordinates[0] = 0
+# TypeError: 'tuple' object does not support item assignment
+```
+
+<script type="py-editor">
+coordinates = (40.7128, -74.0060)
+
+print(coordinates)
+print(coordinates[0])
+
+coordinates[0] = 0
+</script>
+
+That immutability is exactly why a tuple — unlike a list — is allowed as
+a dictionary key, which is what the next example relies on.
+
+### What can be used as a dictionary key?
+
+A dictionary key has to be **immutable** — a type of value that can't be
+changed after it's created. `str`, `int`, `float`, and `tuple` all work
+fine as keys (that's why every key so far has been a string):
+
+```python
+mixed_keys = {}
+mixed_keys[1] = "an int key"
+mixed_keys["one"] = "a string key"
+mixed_keys[(1, 2)] = "a tuple key"
+
+print(mixed_keys)
+```
+
+Lists (and dictionaries) are **mutable**, so Python won't allow them as
+keys — a key has to stay the same forever so Python can reliably find it
+again later:
+
+```python
+mixed_keys[[1, 2]] = "a list key"
+# TypeError: unhashable type: 'list'
+```
+
+<script type="py-editor">
+mixed_keys = {}
+mixed_keys[1] = "an int key"
+mixed_keys["one"] = "a string key"
+mixed_keys[(1, 2)] = "a tuple key"
+
+print(mixed_keys)
+
+mixed_keys[[1, 2]] = "a list key"
+</script>
