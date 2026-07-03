@@ -5,3 +5,4 @@ permalink: /
 ---
 
 - [Part 1: Data types, arithmetic operators, variables](./part1/)
+- [Part 2: All about strings](./part2/)
