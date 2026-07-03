@@ -6,4 +6,4 @@ permalink: /
 
 # Craig's Python Scrapbook
 
-- [Part 1: Basics](./week1/)
+- [Part 1: Basics](./part1/)
