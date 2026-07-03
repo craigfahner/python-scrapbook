@@ -4,6 +4,4 @@ title: Craig's Python Notes
 permalink: /
 ---
 
-# Craig's Python Scrapbook
-
-- [Part 1: Basics](./part1/)
+- [Part 1: Data types, arithmetic operators, variables](./part1/)
