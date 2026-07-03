@@ -22,3 +22,22 @@ hit **Run** to see the result:
 print("Hello, world!")
 </script>
 
+### Python is case-sensitive
+
+Python treats uppercase and lowercase letters as different characters, even
+in names of built-in functions. `print` is not the same as `Print` — only
+the lowercase spelling refers to the actual built-in function.
+
+```python
+print("Hello, world!")   # works: this is the real built-in function
+
+Print("Hello, world!")   # NameError: 'Print' is not defined
+```
+
+Run the box below to see the error Python raises when the case doesn't
+match:
+
+<script type="py-editor">
+Print("Hello, world!")
+</script>
+
