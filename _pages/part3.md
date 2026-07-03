@@ -52,3 +52,333 @@ print(birds)
 print(leap_years)
 print(bands)
 </script>
+
+### Indexing into a list of lists
+
+Grabbing a value out of `birds` or `leap_years` is just `[index]`, the
+same as indexing a string. `bands` needs one extra step, since each item
+in `bands` is itself a list — the first `[ ]` picks which band, and the
+second `[ ]` picks which member of that band:
+
+```python
+band_member = bands[0][1]   # 2nd member of the 1st band -- "Paul McCartney"
+leap_year = leap_years[3]   # 4th leap year in the list -- 2012
+bird = birds[4]             # 5th bird in the list -- "Crow"
+
+sentence = f"{band_member} was born in {leap_year} and their favorite bird is {bird}"
+print(sentence)
+```
+
+<script type="py-editor">
+birds = ["Robin", "Sparrow", "Blue Jay", "Cardinal", "Crow",
+         "Finch", "Owl", "Hawk", "Hummingbird", "Woodpecker"]
+
+leap_years = [2000, 2004, 2008, 2012, 2016, 2020, 2024]
+
+bands = [
+    ["John Lennon", "Paul McCartney", "George Harrison", "Ringo Starr"],
+    ["Mick Jagger", "Keith Richards", "Charlie Watts", "Ronnie Wood", "Bill Wyman"],
+    ["John Phillips", "Michelle Phillips", "Cass Elliot", "Denny Doherty"],
+]
+
+band_member = bands[0][1]
+leap_year = leap_years[3]
+bird = birds[4]
+
+sentence = f"{band_member} was born in {leap_year} and their favorite bird is {bird}"
+print(sentence)
+</script>
+
+### Changing a value in a list
+
+Unlike strings — where every method we've used (`.upper()`, `.replace()`,
+`.strip()`, ...) hands back a brand-new string — lists are **mutable**:
+you can change an item in place with `[index] = new_value`, no new list
+required. Assigning to `bands[1][3]` reaches into the Rolling Stones list
+(`bands[1]`) and replaces its 4th member (`[3]`), swapping "Ronnie Wood"
+for original member "Brian Jones":
+
+```python
+print(bands[1])   # before
+
+bands[1][3] = "Brian Jones"
+
+print(bands[1])   # after
+```
+
+<script type="py-editor">
+bands = [
+    ["John Lennon", "Paul McCartney", "George Harrison", "Ringo Starr"],
+    ["Mick Jagger", "Keith Richards", "Charlie Watts", "Ronnie Wood", "Bill Wyman"],
+    ["John Phillips", "Michelle Phillips", "Cass Elliot", "Denny Doherty"],
+]
+
+print(bands[1])
+
+bands[1][3] = "Brian Jones"
+
+print(bands[1])
+</script>
+
+### Adding an item to a list
+
+`.append()` adds a new item to the **end** of a list, growing it by one —
+another way lists can change after they're created:
+
+```python
+birds = ["Robin", "Sparrow", "Blue Jay", "Cardinal", "Crow",
+         "Finch", "Owl", "Hawk", "Hummingbird", "Woodpecker"]
+
+birds.append("Cockatoo")
+
+print(birds)
+```
+
+<script type="py-editor">
+birds = ["Robin", "Sparrow", "Blue Jay", "Cardinal", "Crow",
+         "Finch", "Owl", "Hawk", "Hummingbird", "Woodpecker"]
+
+birds.append("Cockatoo")
+
+print(birds)
+</script>
+
+### List operations: min, max, len, average, and sort
+
+A handful of built-in functions work on any list of numbers:
+
+```python
+temperatures = [72, 68, 95, 61, 80, 77, 55, 90, 83, 64]
+
+print(min(temperatures))   # smallest value
+print(max(temperatures))   # largest value
+print(len(temperatures))   # how many items are in the list
+
+average = sum(temperatures) / len(temperatures)
+print(average)
+```
+
+There's no built-in `average()` function, but `sum()` adds up every value
+in the list, and dividing that by `len()` (the count of values) gives the
+average.
+
+`.sort()` puts the list in order — from smallest to largest by default —
+and, like the list changes from earlier in this section, it does this
+**in place** rather than returning a new list:
+
+```python
+temperatures.sort()
+print(temperatures)
+```
+
+<script type="py-editor">
+temperatures = [72, 68, 95, 61, 80, 77, 55, 90, 83, 64]
+
+print(min(temperatures))
+print(max(temperatures))
+print(len(temperatures))
+
+average = sum(temperatures) / len(temperatures)
+print(average)
+
+temperatures.sort()
+print(temperatures)
+</script>
+
+### More list methods
+
+Starting from a daily routine, here's a walkthrough of six more list
+methods, each one changing the list a little further:
+
+```python
+daily_routine = ["wake up", "eat breakfast", "go to work", "eat lunch",
+                  "go home", "exercise", "eat dinner", "watch tv"]
+
+# append() -- add a new item to the end
+daily_routine.append("go to sleep")
+print(daily_routine)
+
+# insert(index, item) -- add an item at a specific position, shifting
+# everything else at and after that position to the right. "eat breakfast"
+# is at index 1, so inserting at index 2 puts "walk the dog" right after it.
+daily_routine.insert(2, "walk the dog")
+print(daily_routine)
+
+# remove(value) -- remove the first item that matches the given value
+daily_routine.remove("exercise")
+print(daily_routine)
+
+# pop(index) -- remove an item by index and return it; .index() finds
+# "watch tv"'s current position first, since earlier steps shifted it
+popped_task = daily_routine.pop(daily_routine.index("watch tv"))
+print(popped_task)
+print(daily_routine)
+
+# reverse() -- flip the order of the whole list, in place
+daily_routine.reverse()
+print(daily_routine)
+
+# clear() -- remove everything, leaving an empty list
+daily_routine.clear()
+print(daily_routine)
+```
+
+<script type="py-editor">
+daily_routine = ["wake up", "eat breakfast", "go to work", "eat lunch",
+                  "go home", "exercise", "eat dinner", "watch tv"]
+
+daily_routine.append("go to sleep")
+print(daily_routine)
+
+daily_routine.insert(2, "walk the dog")
+print(daily_routine)
+
+daily_routine.remove("exercise")
+print(daily_routine)
+
+popped_task = daily_routine.pop(daily_routine.index("watch tv"))
+print(popped_task)
+print(daily_routine)
+
+daily_routine.reverse()
+print(daily_routine)
+
+daily_routine.clear()
+print(daily_routine)
+</script>
+
+### Dictionaries
+
+A list looks things up by **position** — `birds[2]` only makes sense if
+you remember that index `2` happens to be the third bird. A dictionary
+instead looks things up by **label**: it's a collection of `key: value`
+pairs, written with curly braces, where each value is retrieved by name
+rather than by position. That makes a dictionary a natural fit for
+describing one real-world thing with several named attributes.
+
+Here are the first three Beatles albums (UK releases), each one a
+dictionary with the same four keys — `album_title`, `release_date`,
+`running_time`, and `tracks` (itself a list, since an album has many
+tracks):
+
+```python
+beatles_albums = [
+    {
+        "album_title": "Please Please Me",
+        "release_date": "22 March 1963",
+        "running_time": "31:59",
+        "tracks": ["I Saw Her Standing There", "Misery", "Anna (Go to Him)",
+                   "Chains", "Boys", "Ask Me Why", "Please Please Me",
+                   "Love Me Do", "P.S. I Love You", "Baby It's You",
+                   "Do You Want to Know a Secret", "A Taste of Honey",
+                   "There's a Place", "Twist and Shout"],
+    },
+    {
+        "album_title": "With the Beatles",
+        "release_date": "22 November 1963",
+        "running_time": "33:07",
+        "tracks": ["It Won't Be Long", "All I've Got to Do", "All My Loving",
+                   "Don't Bother Me", "Little Child", "Till There Was You",
+                   "Please Mister Postman", "Roll Over Beethoven", "Hold Me Tight",
+                   "You Really Got a Hold on Me", "I Wanna Be Your Man",
+                   "Devil in Her Heart", "Not a Second Time",
+                   "Money (That's What I Want)"],
+    },
+    {
+        "album_title": "A Hard Day's Night",
+        "release_date": "10 July 1964",
+        "running_time": "30:09",
+        "tracks": ["A Hard Day's Night", "I Should Have Known Better", "If I Fell",
+                   "I'm Happy Just to Dance with You", "And I Love Her", "Tell Me Why",
+                   "Can't Buy Me Love", "Any Time at All", "I'll Cry Instead",
+                   "Things We Said Today", "When I Get Home", "You Can't Do That",
+                   "I'll Be Back"],
+    },
+]
+
+first_album = beatles_albums[0]
+print(first_album["album_title"])
+print(first_album["release_date"])
+print(first_album["running_time"])
+print(first_album["tracks"])
+```
+
+`beatles_albums` is a list (indexed `[0]`, `[1]`, `[2]` — one per album),
+and each item inside it is a dictionary (indexed by key, like
+`["album_title"]`) — a list and a dictionary working together.
+
+<script type="py-editor">
+beatles_albums = [
+    {
+        "album_title": "Please Please Me",
+        "release_date": "22 March 1963",
+        "running_time": "31:59",
+        "tracks": ["I Saw Her Standing There", "Misery", "Anna (Go to Him)",
+                   "Chains", "Boys", "Ask Me Why", "Please Please Me",
+                   "Love Me Do", "P.S. I Love You", "Baby It's You",
+                   "Do You Want to Know a Secret", "A Taste of Honey",
+                   "There's a Place", "Twist and Shout"],
+    },
+    {
+        "album_title": "With the Beatles",
+        "release_date": "22 November 1963",
+        "running_time": "33:07",
+        "tracks": ["It Won't Be Long", "All I've Got to Do", "All My Loving",
+                   "Don't Bother Me", "Little Child", "Till There Was You",
+                   "Please Mister Postman", "Roll Over Beethoven", "Hold Me Tight",
+                   "You Really Got a Hold on Me", "I Wanna Be Your Man",
+                   "Devil in Her Heart", "Not a Second Time",
+                   "Money (That's What I Want)"],
+    },
+    {
+        "album_title": "A Hard Day's Night",
+        "release_date": "10 July 1964",
+        "running_time": "30:09",
+        "tracks": ["A Hard Day's Night", "I Should Have Known Better", "If I Fell",
+                   "I'm Happy Just to Dance with You", "And I Love Her", "Tell Me Why",
+                   "Can't Buy Me Love", "Any Time at All", "I'll Cry Instead",
+                   "Things We Said Today", "When I Get Home", "You Can't Do That",
+                   "I'll Be Back"],
+    },
+]
+
+first_album = beatles_albums[0]
+print(first_album["album_title"])
+print(first_album["release_date"])
+print(first_album["running_time"])
+print(first_album["tracks"])
+</script>
+
+### Converting a dictionary value from a string to seconds
+
+`running_time` is stored as a string, `"31:59"` — the same
+minutes-and-seconds format from the song length example back in
+[Part 2](../part2/). The same conversion applies here: split on `:`,
+convert each half to an `int`, then combine them:
+
+```python
+running_time = beatles_albums[0]["running_time"]   # "31:59"
+
+minutes_str, seconds_str = running_time.split(":")
+total_seconds = int(minutes_str) * 60 + int(seconds_str)
+
+print(total_seconds)   # 1919
+```
+
+<script type="py-editor">
+beatles_albums = [
+    {
+        "album_title": "Please Please Me",
+        "release_date": "22 March 1963",
+        "running_time": "31:59",
+        "tracks": ["I Saw Her Standing There", "Misery"],
+    },
+]
+
+running_time = beatles_albums[0]["running_time"]
+
+minutes_str, seconds_str = running_time.split(":")
+total_seconds = int(minutes_str) * 60 + int(seconds_str)
+
+print(total_seconds)
+</script>
