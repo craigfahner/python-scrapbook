@@ -155,6 +155,24 @@ test_string = f"My dog {dog_name} has 6 fleas."
 print("fleas" in test_string)
 </script>
 
+The `in` operator doesn't care how long the string is or where the match
+falls — it just answers `True` or `False`. That's the whole idea behind
+"finding a needle in a haystack":
+
+```python
+haystack = "haystack haystack haystack haystack haystack haystack haystack haystack haystack haystack haystack haystack needle haystack haystack haystack haystack haystack haystack haystack haystack haystack haystack haystack haystack"
+
+print("needle" in haystack)   # True
+print("pin" in haystack)      # False -- not in there at all
+```
+
+<script type="py-editor">
+haystack = "haystack haystack haystack haystack haystack haystack haystack haystack haystack haystack haystack haystack needle haystack haystack haystack haystack haystack haystack haystack haystack haystack haystack haystack haystack"
+
+print("needle" in haystack)
+print("pin" in haystack)
+</script>
+
 **Step 2: count how many times it shows up.** `.count()` returns the
 number of (non-overlapping) times a substring appears:
 
