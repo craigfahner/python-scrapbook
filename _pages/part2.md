@@ -270,3 +270,165 @@ The logic isn't accidentally correct here — it was written to split only
 once, from a known fixed point (the front for the band name, the back for
 the file type), which is exactly what keeps it safe from extra hyphens or
 extra `" - "`s anywhere in the middle.
+
+### Cleaning up whitespace with strip()
+
+`.strip()` returns a new string with any whitespace at the **start and
+end** removed — it leaves whitespace in the middle of the string alone.
+It's handy for cleaning up text that came from user input or a file,
+where stray spaces tend to sneak in:
+
+```python
+messy_string = "  I can't stand this unnecessary white space!   "
+
+print(repr(messy_string))
+print(repr(messy_string.strip()))
+```
+
+`repr()` here just makes the whitespace and the string's quote marks
+visible in the output, so it's easier to see exactly where the extra
+spaces were.
+
+<script type="py-editor">
+messy_string = "  I can't stand this unnecessary white space!   "
+
+print(repr(messy_string))
+print(repr(messy_string.strip()))
+</script>
+
+### Replacing text with replace()
+
+`.replace(old, new)` returns a new string with every occurrence of `old`
+swapped out for `new`:
+
+```python
+mood_string = "I am having a terrible time coding in Python!"
+
+print(mood_string.replace("terrible", "wonderful"))
+```
+
+<script type="py-editor">
+mood_string = "I am having a terrible time coding in Python!"
+
+print(mood_string.replace("terrible", "wonderful"))
+</script>
+
+### Parsing a CSV-style line
+
+CSV ("comma-separated values") is a common plain-text format for tabular
+data — one row per line, fields separated by commas. `.split(",")` with no
+`maxsplit` splits on *every* comma, which is exactly what we want here
+since we know each line has exactly four fields:
+
+```python
+csv_line = "Nirvana,Smells Like Teen Spirit,5:01,1991"
+
+artist, song_title, length, release_date = csv_line.split(",")
+
+print(artist)
+print(song_title)
+print(length)
+print(release_date)
+```
+
+<script type="py-editor">
+csv_line = "Nirvana,Smells Like Teen Spirit,5:01,1991"
+
+artist, song_title, length, release_date = csv_line.split(",")
+
+print(artist)
+print(song_title)
+print(length)
+print(release_date)
+</script>
+
+### Converting minutes:seconds into total seconds
+
+`length` is still a string, `"5:01"` — useful for display, but not
+something we can do math on directly. Splitting on `:` gives us the
+minutes and seconds separately; converting each to an `int` and combining
+them (`minutes * 60 + seconds`) gives the song's length in total seconds:
+
+```python
+minutes_str, seconds_str = length.split(":")
+total_seconds = int(minutes_str) * 60 + int(seconds_str)
+
+print(total_seconds)   # 301
+```
+
+<script type="py-editor">
+csv_line = "Nirvana,Smells Like Teen Spirit,5:01,1991"
+artist, song_title, length, release_date = csv_line.split(",")
+
+minutes_str, seconds_str = length.split(":")
+total_seconds = int(minutes_str) * 60 + int(seconds_str)
+
+print(total_seconds)
+</script>
+
+### Splitting into a list (array)
+
+So far `.split()` has always split a string into exactly the number of
+pieces we knew to expect, unpacked straight into separate variables. But
+`.split()` actually always returns a **list** — an ordered collection that
+can hold as many values as it needs to, all in one variable. (Other
+languages often call this same kind of structure an "array".) Each item in
+a list has a position, or *index*, starting at `0` for the first item —
+and you grab an item out of a list with `[ ]`, the same square-bracket
+syntax used for indexing strings.
+
+```python
+fruit_string = "banana, strawberry, apple, orange, mango, blueberry, pineapple"
+fruits = fruit_string.split(", ")
+
+print(fruits)
+```
+
+<script type="py-editor">
+fruit_string = "banana, strawberry, apple, orange, mango, blueberry, pineapple"
+fruits = fruit_string.split(", ")
+
+print(fruits)
+</script>
+
+Once it's a list, grab any single item by its index. Lists are
+zero-indexed, so the third item is at index `2`:
+
+```python
+print(fruits[2])   # "apple"
+```
+
+<script type="py-editor">
+fruit_string = "banana, strawberry, apple, orange, mango, blueberry, pineapple"
+fruits = fruit_string.split(", ")
+
+print(fruits[2])
+</script>
+
+### Indexing and slicing a string
+
+Strings support that same `[ ]` indexing, one character at a time, and
+also **slicing** — `text[start:end]` — to pull out a whole range of
+characters at once. Slicing grabs everything from `start` up to, but not
+including, `end`.
+
+```python
+text = "saxophone"
+
+print(text[2])      # "x"
+print(text[4:9])    # "phone"
+```
+
+A quick way to check a slice's boundaries: count the characters.
+`saxophone` has the letter `x` at index `2` (`s` is `0`, `a` is `1`), and
+`phone` is 5 letters long starting at index `4` — so it runs through
+index `8`, which means the slice has to end at `9` (`text[4:9]`), since
+the ending index in a slice is always one past the last character you
+want.
+
+<script type="py-editor">
+text = "saxophone"
+
+print(text[2])
+print(text[4:9])
+</script>
