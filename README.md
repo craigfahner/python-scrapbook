@@ -10,3 +10,4 @@ permalink: /
     * [Part 3: Collections](./part3/)
     * [Part 4: Loops](./part4/)
     * [Part 5: Conditionals](./part5/)
+    * [Part 6: Functions](./part6/)

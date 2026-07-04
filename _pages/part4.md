@@ -11,7 +11,18 @@ permalink: /part4/
 A `for` loop runs a block of code once for each item in a collection —
 like the `daily_routine` list from [Part 3](../part3/). Each time through
 the loop, the loop variable (here, `i`) is set to the next item in the
-list, until the list runs out:
+list, until the list runs out.
+
+**Indentation is how Python knows what belongs to the loop.** The line
+`for i in daily_routine:` ends with a colon, and every line meant to run
+*inside* the loop must be indented (by convention, 4 spaces) below it —
+`print(i)` runs once per item because it's indented under the `for` line.
+As soon as a line goes back to the original indentation level, Python
+treats it as outside the loop. Many other languages mark a block of code
+with curly braces `{ }`; Python uses indentation instead — there's no
+brace to leave out or forget to close, but getting the indentation wrong
+(or mixing tabs and spaces) will cause an error, or silently change which
+lines run inside the loop:
 
 ```python
 daily_routine = ["wake up", "eat breakfast", "go to work", "eat lunch",

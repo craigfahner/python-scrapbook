@@ -6,11 +6,50 @@ permalink: /part5/
 
 ## Part 5: Conditionals
 
+### Comparison operators
+
+Conditionals depend on comparison operators (first introduced back in
+[Part 1](../part1/)) to produce the `True`/`False` values that decide
+which branch runs. Here's every one of them, comparing `x = 3` and
+`y = 6`:
+
+```python
+x = 3
+y = 6
+
+print(x == y)   # equal to
+print(x != y)   # not equal to
+print(x < y)    # less than
+print(x > y)    # greater than
+print(x <= y)   # less than or equal to
+print(x >= y)   # greater than or equal to
+```
+
+<script type="py-editor">
+x = 3
+y = 6
+
+print(x == y)
+print(x != y)
+print(x < y)
+print(x > y)
+print(x <= y)
+print(x >= y)
+</script>
+
 ### if / else
 
 An `if` statement runs a block of code only when a condition is `True`;
 `else` gives a fallback block that runs when it's `False`. Here, whether
-you need a jacket depends on the temperature:
+you need a jacket depends on the temperature.
+
+Just like the `for` loop in [Part 4](../part4/), indentation is what
+marks which lines belong to which branch. `if temperature < 60:` and
+`else:` both end in a colon, and each is followed by an indented block —
+Python runs the indented lines under whichever branch's condition
+matched, and skips the other block entirely. Line up the indentation
+wrong and Python either won't know which branch a line belongs to, or
+will raise an `IndentationError`:
 
 ```python
 temperature = 45
@@ -80,7 +119,7 @@ else:
     print("wear a wool jacket and gloves")
 </script>
 
-### Filtering tracks into a new list
+### Filtering a list using conditionals
 
 This one nests a loop inside a loop, plus a condition. For each album, we
 loop over that album's `tracks`; an `if` checks whether `"love"` shows up
