@@ -119,6 +119,39 @@ else:
     print("wear a wool jacket and gloves")
 </script>
 
+### Logical operators: and, or, not
+
+`and`, `or`, and `not` combine or invert `True`/`False` values, letting a
+single condition check more than one thing at once:
+
+- **`and`** — `True` only if *both* sides are `True`
+- **`or`** — `True` if *at least one* side is `True`
+- **`not`** — flips a `True`/`False` value to its opposite
+
+```python
+temperature = 72
+
+is_comfortable = temperature >= 65 and temperature <= 75
+print(is_comfortable)   # True -- both sides are True
+
+is_extreme = temperature < 32 or temperature > 95
+print(is_extreme)   # False -- neither side is True
+
+print(not is_comfortable)   # False -- the opposite of True
+```
+
+<script type="py-editor">
+temperature = 72
+
+is_comfortable = temperature >= 65 and temperature <= 75
+print(is_comfortable)
+
+is_extreme = temperature < 32 or temperature > 95
+print(is_extreme)
+
+print(not is_comfortable)
+</script>
+
 ### Filtering a list using conditionals
 
 This one nests a loop inside a loop, plus a condition. For each album, we
