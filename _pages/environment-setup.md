@@ -19,19 +19,8 @@ a tool for managing isolated environments.
 
 1. Download the command-line installer for your OS from
    [anaconda.com/download](https://www.anaconda.com/download) (choose the
-   "Command Line Installer," not the graphical one).
-2. Run the installer from a terminal:
-
-   **macOS / Linux:**
-   ```bash
-   bash ~/Downloads/Anaconda3-*.sh
-   ```
-   Follow the prompts (accept the license, confirm the install location,
-   and say yes when asked whether to run `conda init`).
-
-   **Windows:** run the downloaded `.exe` and follow the setup wizard,
-   then open "Anaconda Prompt" from the Start menu for the rest of these
-   steps.
+   "Command Line Installer," not the graphical one). You can skip the registration prompt if it shows up.
+2. Follow the instructions for a Command Line installation (CLI) for your operating system.
 
 3. Close and reopen your terminal so the changes take effect, then
    confirm the install worked:
@@ -102,7 +91,7 @@ and run one at a time, in whatever order you like. There are two kinds:
   cell and moves to/creates the next one) or **Ctrl+Enter** (runs it in
   place, without moving on).
 - **Markdown cells** — plain-text notes, headers, etc. Turn the current
-  cell into one with `Esc` then `M`.
+  cell into one with `Esc` then `M`. These are formatted using Markdown syntax, which you can learn about [here](https://www.markdownguide.org/cheat-sheet/).
 
 ![Editing cells in JupyterLab](../assets/images/editing.png)
 
