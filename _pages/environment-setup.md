@@ -86,3 +86,30 @@ jupyter lab
 
 This opens JupyterLab in your browser, pointed at whatever directory you
 ran the command from.
+
+### Using JupyterLab to follow along
+
+**Create a notebook.** In JupyterLab, go to File → New → Notebook, (or select the New Python3 Notebook option from the launcher as pictured) and
+pick the Python 3 kernel when prompted. This gives you a new `.ipynb`
+file with a single empty cell.
+
+![Creating a new notebook in JupyterLab](../assets/images/newnotebook.png)
+
+**Cells are the unit of work.** A notebook is a stack of cells you write
+and run one at a time, in whatever order you like. There are two kinds:
+
+- **Code cells** — Python code. Run one with **Shift+Enter** (runs the
+  cell and moves to/creates the next one) or **Ctrl+Enter** (runs it in
+  place, without moving on).
+- **Markdown cells** — plain-text notes, headers, etc. Turn the current
+  cell into one with `Esc` then `M`.
+
+![Editing cells in JupyterLab](../assets/images/editing.png)
+
+**Write and run each example as its own cell.** Type a line of code (say,
+`print("Hello, world!")`) into a cell and run it (shift or ctrl and enter)— the output appears
+directly underneath that same cell. Move to the next cell for the next
+example, and so on down the notebook.
+
+**Save your work.** Ctrl+S saves the notebook file, including whatever
+output is currently displayed under each cell.
